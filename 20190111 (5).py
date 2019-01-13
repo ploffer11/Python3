@@ -1,3 +1,13 @@
+"""
+
+2019 - 01 - 13
+Comment :
+"This is object-oriented and this is pythonic!"
+docstring is necessary
+shift-enter in vscode : REPL 
+
+"""
+
 import abc 
 import uuid 
 
