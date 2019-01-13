@@ -67,12 +67,25 @@ class AssignmentGrader:
         return self.assignment.lesson()
 
 class Grader:
+    
     def __init__(self):
         self.student_graders, self.assignment_classes = (
             {}, {}
         )
 
     def register(self, assignment_class):
+        """
+        # Role 
+        dictionary : assignment_classes
+        key : id (uuid4)
+        value : assignment_class (class)
+
+        # Args 
+        assignment_class (class)
+
+        # Return
+        unique id (uuid4) 
+        """
         if not issubclass(assignment_class, Assignment):
             raise RuntimeError(
                 "Your class does not have the right methods"
@@ -82,11 +95,36 @@ class Grader:
         return id
 
     def start_assignment(self, student, id):
+        """
+        # Role
+        dictionary : student_graders
+        key : student(str) 
+        value : AssignmentGrader(student, assignment_classes[id])(class)  
+
+        # Args
+        student (str) : name of student
+        id (uuid4) : id of student
+
+        # No return value
+        """
         self.student_graders[student] = AssignmentGrader(
             student, self.assignment_classes[id]
         )
 
     def get_lesson(self, student):
+        """
+        # Role
+        dictionary : student_graders
+        key : student (str)
+        value : AssignmentGrader (class)
+
+        # Args
+        student (str) : name of student
+
+        # Return
+        AssignmentGrader.lesson()
+
+        """
         assignment = self.student_graders[student]
         return assignment.lesson()
     
