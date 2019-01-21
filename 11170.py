@@ -1,0 +1,1 @@
+a=[str(i).count('0')for i in range(1000005)];exec("n,m=map(int,input().split());print(sum(a[n:m+1]));"*int(input()))

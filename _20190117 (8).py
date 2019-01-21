@@ -52,6 +52,11 @@ class Repeater:
         self.count += 1
         timer.call_after(5, self.repeater)
 
+    def __call__(self, timer):
+        format_time(f"repeat {self.count}")
+        self.count += 1
+        timer.call_after(5, self)
+
 timer = Timer()
 timer.call_after(1, one)
 #timer.call_after(2, one)
@@ -60,6 +65,6 @@ timer.call_after(5, two)
 timer.call_after(9, three)
 #timer.call_after(6, three)
 repeater = Repeater()
-timer.call_after(5, repeater.repeater)
+timer.call_after(5, repeater)
 format_time("Starting")
 timer.run()
